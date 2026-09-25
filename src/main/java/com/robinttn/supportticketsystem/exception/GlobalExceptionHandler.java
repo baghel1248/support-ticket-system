@@ -17,7 +17,7 @@ import java.util.Map;
 
 @Slf4j
 @RestControllerAdvice
-public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
+public class GlobalExceptionHandler  {
 
     @ExceptionHandler(InvalidStateTransitionException.class)
     public ProblemDetail handleInvalidStateTransition(InvalidStateTransitionException ex) {
