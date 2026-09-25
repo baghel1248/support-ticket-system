@@ -1,0 +1,375 @@
+:root {
+    --bg: #f4f6f9;
+    --surface: #ffffff;
+    --text: #1a2332;
+    --muted: #5c6b7a;
+    --border: #d8e0e8;
+    --primary: #1d4ed8;
+    --primary-hover: #1e40af;
+    --danger: #b91c1c;
+    --danger-bg: #fef2f2;
+    --focus: #2563eb;
+    --radius: 10px;
+    --shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", system-ui, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.45;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+.app-header {
+    background: #0f172a;
+    color: #fff;
+    padding: 1rem 1.5rem;
+}
+
+.app-header h1 {
+    margin: 0;
+    font-size: 1.35rem;
+    font-weight: 650;
+}
+
+.error-banner {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 0;
+    padding: 0.85rem 1.5rem;
+    background: var(--danger-bg);
+    color: var(--danger);
+    border-bottom: 1px solid #fecaca;
+}
+
+.error-banner[hidden] {
+    display: none;
+}
+
+.error-dismiss {
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font-size: 1.4rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: minmax(320px, 1fr) minmax(360px, 1.1fr);
+    gap: 1.25rem;
+    padding: 1.25rem 1.5rem 2rem;
+    align-items: start;
+}
+
+.list-panel,
+.details-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 1rem;
+    min-height: 70vh;
+}
+
+.panel-title {
+    margin: 0 0 0.75rem;
+    font-size: 1.05rem;
+}
+
+.toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    align-items: center;
+}
+
+.search-bar {
+    display: flex;
+    flex: 1;
+    gap: 0.5rem;
+    min-width: 280px;
+}
+
+input,
+select,
+textarea,
+button {
+    font: inherit;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.5rem 0.65rem;
+    background: #fff;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+}
+
+button {
+    border: 1px solid var(--border);
+    background: #fff;
+    border-radius: 8px;
+    padding: 0.5rem 0.85rem;
+    cursor: pointer;
+    color: var(--text);
+}
+
+button.primary,
+button[type="submit"] {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: #fff;
+}
+
+button.primary:hover,
+button[type="submit"]:hover {
+    background: var(--primary-hover);
+}
+
+button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.ticket-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+}
+
+.ticket-card {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 0.5rem 0.85rem;
+    width: 100%;
+    text-align: left;
+    padding: 0.85rem;
+    border-radius: 10px;
+    background: #f8fafc;
+}
+
+.ticket-card.selected {
+    outline: 2px solid var(--primary);
+    background: #eff6ff;
+}
+
+.ticket-card .id {
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
+.ticket-card h3 {
+    margin: 0;
+    font-size: 1rem;
+    grid-column: 2 / 3;
+}
+
+.ticket-card .meta {
+    grid-column: 1 / -1;
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+.badge-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    justify-content: flex-end;
+}
+
+.badge {
+    display: inline-block;
+    border-radius: 999px;
+    padding: 0.15rem 0.55rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.status-OPEN {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.status-IN_PROGRESS {
+    background: #fef9c3;
+    color: #854d0e;
+}
+
+.status-RESOLVED {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.status-CLOSED {
+    background: #e5e7eb;
+    color: #374151;
+}
+
+.status-CANCELLED {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.priority-LOW {
+    background: #e0f2fe;
+    color: #075985;
+}
+
+.priority-MEDIUM {
+    background: #ede9fe;
+    color: #5b21b6;
+}
+
+.priority-HIGH {
+    background: #ffedd5;
+    color: #9a3412;
+}
+
+.priority-URGENT {
+    background: #ffe4e6;
+    color: #9f1239;
+}
+
+.empty-state {
+    color: var(--muted);
+}
+
+.details-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.ticket-id {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
+.details-header h3 {
+    margin: 0.15rem 0 0;
+}
+
+.description {
+    white-space: pre-wrap;
+    background: #f8fafc;
+    border-radius: 8px;
+    padding: 0.75rem;
+}
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.actions button {
+    background: #0f172a;
+    color: #fff;
+    border-color: #0f172a;
+}
+
+.card-form {
+    display: grid;
+    gap: 0.4rem;
+    margin-top: 1rem;
+}
+
+.card-form h4,
+.card-form h2 {
+    margin: 0.25rem 0 0.4rem;
+}
+
+.comment-thread {
+    display: grid;
+    gap: 0.65rem;
+}
+
+.comment {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.7rem;
+    background: #f8fafc;
+}
+
+.comment header {
+    display: flex;
+    justify-content: space-between;
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
+.comment p {
+    margin: 0.35rem 0 0;
+}
+
+.modal {
+    border: 0;
+    border-radius: 12px;
+    padding: 1.25rem;
+    width: min(520px, 92vw);
+    box-shadow: var(--shadow);
+}
+
+.modal::backdrop {
+    background: rgba(15, 23, 42, 0.45);
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+}
+
+.modal-actions button[type="button"] {
+    background: #fff;
+    color: var(--text);
+}
+
+@media (max-width: 900px) {
+    .layout {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+
+    .list-panel,
+    .details-panel {
+        min-height: unset;
+    }
+}

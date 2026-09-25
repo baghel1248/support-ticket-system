@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support Ticket Management System</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="app-header">
+    <h1>Support Ticket Management System</h1>
+</header>
+
+<div id="error-banner" class="error-banner" role="alert" hidden>
+    <span id="error-banner-text"></span>
+    <button type="button" class="error-dismiss" id="error-dismiss" aria-label="Dismiss error">×</button>
+</div>
+
+<main class="layout">
+    <section class="list-panel" aria-labelledby="ticket-list-heading">
+        <div class="toolbar">
+            <form id="search-form" class="search-bar" role="search">
+                <label class="sr-only" for="keyword">Keyword search</label>
+                <input id="keyword" name="keyword" type="search" placeholder="Search title or description">
+
+                <label class="sr-only" for="status-filter">Filter by status</label>
+                <select id="status-filter" name="status">
+                    <option value="">All statuses</option>
+                    <option value="OPEN">OPEN</option>
+                    <option value="IN_PROGRESS">IN_PROGRESS</option>
+                    <option value="RESOLVED">RESOLVED</option>
+                    <option value="CLOSED">CLOSED</option>
+                    <option value="CANCELLED">CANCELLED</option>
+                </select>
+
+                <button type="submit">Search</button>
+            </form>
+            <button type="button" id="open-create-modal" class="primary">Create Ticket</button>
+        </div>
+
+        <h2 id="ticket-list-heading" class="panel-title">Tickets</h2>
+        <div id="ticket-list" class="ticket-list" role="list"></div>
+        <p id="empty-list" class="empty-state" hidden>No tickets found.</p>
+    </section>
+
+    <section class="details-panel" aria-labelledby="details-heading">
+        <h2 id="details-heading" class="panel-title">Ticket Details</h2>
+        <p id="no-selection" class="empty-state">Select a ticket to view details and actions.</p>
+
+        <article id="ticket-details" hidden>
+            <div class="details-header">
+                <div>
+                    <p class="ticket-id" id="detail-id"></p>
+                    <h3 id="detail-title"></h3>
+                </div>
+                <div class="badge-row">
+                    <span id="detail-status" class="badge"></span>
+                    <span id="detail-priority" class="badge"></span>
+                </div>
+            </div>
+            <p class="meta">
+                Assignee: <strong id="detail-assignee"></strong>
+                · Created: <time id="detail-created"></time>
+                · Updated: <time id="detail-updated"></time>
+            </p>
+            <p id="detail-description" class="description"></p>
+
+            <div class="actions" id="status-actions" aria-label="Status actions"></div>
+
+            <form id="update-form" class="card-form">
+                <h4>Update ticket</h4>
+                <label for="update-title">Title</label>
+                <input id="update-title" name="title" maxlength="150" required>
+
+                <label for="update-description">Description</label>
+                <textarea id="update-description" name="description" maxlength="2000" rows="4" required></textarea>
+
+                <label for="update-priority">Priority</label>
+                <select id="update-priority" name="priority">
+                    <option value="LOW">LOW</option>
+                    <option value="MEDIUM">MEDIUM</option>
+                    <option value="HIGH">HIGH</option>
+                    <option value="URGENT">URGENT</option>
+                </select>
+
+                <label for="update-assignee">Assignee</label>
+                <input id="update-assignee" name="assignee" maxlength="100">
+
+                <button type="submit">Save changes</button>
+            </form>
+
+            <section class="comments" aria-labelledby="comments-heading">
+                <h4 id="comments-heading">Comments</h4>
+                <div id="comment-thread" class="comment-thread"></div>
+                <form id="comment-form" class="card-form">
+                    <h4>Add comment</h4>
+                    <label for="comment-author">Author</label>
+                    <input id="comment-author" name="author" required>
+
+                    <label for="comment-content">Content</label>
+                    <textarea id="comment-content" name="content" maxlength="1000" rows="3" required></textarea>
+
+                    <button type="submit">Add Comment</button>
+                </form>
+            </section>
+        </article>
+    </section>
+</main>
+
+<dialog id="create-modal" class="modal">
+    <form id="create-form" class="card-form">
+        <h2>Create Ticket</h2>
+        <label for="create-title">Title</label>
+        <input id="create-title" name="title" maxlength="150" required>
+
+        <label for="create-description">Description</label>
+        <textarea id="create-description" name="description" maxlength="2000" rows="4" required></textarea>
+
+        <label for="create-priority">Priority</label>
+        <select id="create-priority" name="priority">
+            <option value="LOW" selected>LOW</option>
+            <option value="MEDIUM">MEDIUM</option>
+            <option value="HIGH">HIGH</option>
+            <option value="URGENT">URGENT</option>
+        </select>
+
+        <label for="create-assignee">Assignee</label>
+        <input id="create-assignee" name="assignee" maxlength="100">
+
+        <div class="modal-actions">
+            <button type="button" id="cancel-create">Cancel</button>
+            <button type="submit" class="primary">Create</button>
+        </div>
+    </form>
+</dialog>
+
+<script src="/app.js"></script>
+</body>
+</html>
